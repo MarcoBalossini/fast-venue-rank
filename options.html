@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fast Venue Rank – options</title>
+  <style>
+    body { font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 24px; max-width: 640px; color: #222; background: #fafafa; }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    h2 { font-size: 15px; margin: 24px 0 8px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+    .muted { color: #666; font-size: 13px; }
+    label.row { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+    label.row input[type="text"], label.row input[type="email"] { flex: 1; padding: 6px 8px; border: 1px solid #bbb; border-radius: 4px; font: inherit; }
+    button { font: inherit; padding: 6px 12px; border: 1px solid #999; border-radius: 4px; background: #fff; cursor: pointer; }
+    button:hover { background: #f0f0f0; }
+    #status { margin-left: 10px; color: #2e7d32; }
+    table { border-collapse: collapse; font-size: 13px; }
+    td { padding: 2px 12px 2px 0; }
+    code { background: #eee; padding: 1px 4px; border-radius: 3px; }
+    .warn { background: #fff3cd; border: 1px solid #ffe08a; padding: 8px 12px; border-radius: 4px; margin: 8px 0; }
+    [hidden] { display: none !important; }
+    #lists label.row { padding: 3px 0; }
+    #lists .muted { margin-left: 4px; }
+    textarea { width: 100%; box-sizing: border-box; min-height: 90px; font: 12px/1.4 ui-monospace, monospace; padding: 6px; border: 1px solid #bbb; border-radius: 4px; }
+    #customStatus.err, #catalogStatus.err { color: #b71c1c; }
+  </style>
+</head>
+<body>
+  <h1>Fast Venue Rank</h1>
+  <div class="muted">Journal and conference rankings next to Google Scholar results. All rankings come from bundled tables; the network is only used to identify a paper's venue.</div>
+
+  <h2>Rankings</h2>
+  <label class="row"><input type="checkbox" id="ext_on"> Enabled on Google Scholar</label>
+  <label class="row"><input type="checkbox" id="SJR"> Show SJR (SCImago Journal Rank) quartile</label>
+  <label class="row"><input type="checkbox" id="CORE"> Show CORE / ICORE conference rank</label>
+  <div id="lists"></div>
+
+  <h2>Custom ranking</h2>
+  <div class="muted">
+    Import your own list (institutional, field-specific…). Matched by ISSN, exact journal name, or — for one-word
+    names such as <code>CVPR</code> — conference acronym.
+    CSV needs a header with <code>ISSN</code> and/or <code>Name</code> (or <code>Journal</code> / <code>Title</code>),
+    <code>Rank</code> (or <code>Rating</code>) and optionally <code>Description</code>.
+    JSON may be <code>{"1234-5678": "A*", "Journal name": "B"}</code>, an array of
+    <code>{issn, name, rank, description}</code>, or <code>{"key": {name, rank, description}}</code>.
+  </div>
+  <label class="row">Label <input type="text" id="customLabel" placeholder="Custom" maxlength="16"></label>
+  <label class="row"><input type="file" id="customFile" accept=".csv,.json,.tsv,.txt"></label>
+  <textarea id="customText" placeholder="…or paste CSV / JSON here"></textarea>
+  <p><button id="customImport">Import</button> <button id="customClear">Remove custom ranking</button> <span id="customStatus" class="muted"></span></p>
+
+  <h2>Online lookup</h2>
+  <div class="muted">Used only when the venue printed by Scholar cannot be matched locally. Requests are throttled and cached.</div>
+  <label class="row">Crossref e-mail <input type="email" id="crossrefMailto" placeholder="optional – joins the Crossref polite pool (faster, more reliable)"></label>
+  <label class="row">Semantic Scholar API key <input type="text" id="s2ApiKey" placeholder="optional – dedicated 1 req/s quota" autocomplete="off"></label>
+
+  <div id="permBox" class="warn" hidden>
+    This browser has not granted access to the lookup APIs yet.
+    <button id="grantPerms">Grant access</button>
+  </div>
+
+  <p><button id="save">Save</button><span id="status"></span></p>
+
+  <h2>Data</h2>
+  <table>
+    <tr><td>SJR edition</td><td id="sjrEdition">…</td><td id="tbl-sjr" class="muted"></td></tr>
+    <tr><td>CORE source</td><td id="coreSource">…</td><td id="tbl-core" class="muted"></td></tr>
+    <tr><td>Other lists</td><td id="listsBuilt">…</td><td id="tbl-lists" class="muted"></td></tr>
+    <tr><td>Cached lookups</td><td id="cacheEntries">…</td><td></td></tr>
+  </table>
+  <p><button id="clearCache">Clear lookup cache</button></p>
+
+  <h2>Catalog updates</h2>
+  <div class="muted">
+    The ranking tables are rebuilt monthly and published on GitHub. The extension checks once a week and
+    downloads only changed tables (checksummed and validated; the bundled tables stay as fallback).
+  </div>
+  <label class="row"><input type="checkbox" id="catalogAuto"> Update ranking tables automatically</label>
+  <label class="row">Catalog URL <input type="text" id="catalogUrl" placeholder="default" autocomplete="off"></label>
+  <p><button id="checkCatalog">Check for updates now</button> <span id="catalogStatus" class="muted"></span></p>
+  <p class="muted">To build the tables yourself: <code>uv run scripts/build_data.py</code>, then reload the extension.</p>
+
+  <script src="lib/compat.js"></script>
+  <script src="lib/customlist.js"></script>
+  <script src="lib/catalog.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

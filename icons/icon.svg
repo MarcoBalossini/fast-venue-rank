@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="12" y1="12" x2="112" y2="112">
+  <stop offset="0" stop-color="#4DA6FF"/>
+  <stop offset="1" stop-color="#1846B5"/>
+  </linearGradient>
+<linearGradient id="y" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#FFE580"/>
+  <stop offset="1" stop-color="#FBB024"/>
+  </linearGradient>
+  </defs>
+<path d="M78 78 L107 107" stroke="url(#g)" stroke-width="17" stroke-linecap="round"/>
+<circle cx="52" cy="52" r="39" fill="url(#g)"/>
+<circle cx="52" cy="52" r="31" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="2"/>
+<polygon points="52.00,35.00 57.88,46.91 71.02,48.82 61.51,58.09 63.76,71.18 52.00,65.00 40.24,71.18 42.49,58.09 32.98,48.82 46.12,46.91" fill="#0B2A6E" opacity=".35" stroke="#0B2A6E" stroke-width="6" stroke-linejoin="round" transform="translate(0,3)"/>
+<polygon points="52.00,34.00 57.88,45.91 71.02,47.82 61.51,57.09 63.76,70.18 52.00,64.00 40.24,70.18 42.49,57.09 32.98,47.82 46.12,45.91" fill="url(#y)" stroke="url(#y)" stroke-width="6" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,82 @@
+.jq-badges {
+  display: inline-flex;
+  gap: 5px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-size: 12.5px;
+  line-height: 19px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  row-gap: 3px;
+}
+.jq-badges .jq-badge,
+.jq-badges a.jq-badge,
+.jq-badges a.jq-badge:visited,
+.jq-badges a.jq-badge:hover {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 10px;
+  color: #fff !important;
+  text-decoration: none !important;
+  cursor: default;
+  background-color: #9e9e9e;
+}
+.jq-badges a.jq-badge { cursor: pointer; }
+.jq-badges a.jq-badge:hover { filter: brightness(1.12); }
+
+/* SJR quartiles — selectors must outrank the a.jq-badge rules above, so both are qualified */
+.jq-badges .jq-badge.jq-q1 { background-color: #2e7d32; }
+.jq-badges .jq-badge.jq-q2 { background-color: #7cb342; }
+.jq-badges .jq-badge.jq-q3 { background-color: #f9a825; }
+.jq-badges .jq-badge.jq-q4 { background-color: #e65100; }
+.jq-badges .jq-badge.jq-qna { background-color: #9e9e9e; }
+
+/* CORE ranks */
+.jq-badges .jq-badge.jq-astar { background-color: #1b5e20; }
+.jq-badges .jq-badge.jq-a { background-color: #43a047; }
+.jq-badges .jq-badge.jq-b { background-color: #fb8c00; }
+.jq-badges .jq-badge.jq-c { background-color: #e53935; }
+.jq-badges .jq-badge.jq-other { background-color: #757575; }
+
+/* other lists (ABDC, VHB, AJG, CCF, …): colour = position on the list's own scale */
+.jq-badges .jq-badge.jq-list { font-weight: 500; }
+.jq-badges .jq-badge.jq-t0 { background-color: #1b5e20; }
+.jq-badges .jq-badge.jq-t1 { background-color: #43a047; }
+.jq-badges .jq-badge.jq-t2 { background-color: #c0a000; }
+.jq-badges .jq-badge.jq-t3 { background-color: #fb8c00; }
+.jq-badges .jq-badge.jq-t4 { background-color: #e53935; }
+
+/* workshop papers: outlined, tinted by the host conference's rank */
+.jq-badges .jq-badge.jq-ws,
+.jq-badges a.jq-badge.jq-ws {
+  background-color: #fff;
+  border: 1.5px solid #757575;
+  color: #757575 !important;
+  padding: 0 8px;
+}
+.jq-badges .jq-badge.jq-ws.jq-astar { border-color: #1b5e20; color: #1b5e20 !important; background-color: #fff; }
+.jq-badges .jq-badge.jq-ws.jq-a     { border-color: #43a047; color: #2e7d32 !important; background-color: #fff; }
+.jq-badges .jq-badge.jq-ws.jq-b     { border-color: #fb8c00; color: #e65100 !important; background-color: #fff; }
+.jq-badges .jq-badge.jq-ws.jq-c     { border-color: #e53935; color: #c62828 !important; background-color: #fff; }
+.jq-badges .jq-badge.jq-ws.jq-other { border-color: #757575; color: #757575 !important; background-color: #fff; }
+.jq-badges a.jq-badge.jq-ws:hover { filter: none; background-color: #f5f5f5; }
+
+/* states */
+.jq-badges .jq-badge.jq-na { background-color: #bdbdbd; color: #333 !important; cursor: pointer; }
+.jq-badges .jq-badge.jq-err { background-color: #b71c1c; cursor: pointer; }
+.jq-badges .jq-badge.jq-wait {
+  background-color: #e0e0e0;
+  color: #666 !important;
+  min-width: 16px;
+  text-align: center;
+  animation: jq-pulse 1.2s ease-in-out infinite;
+}
+@keyframes jq-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+/* profile table: keep badges on the title line */
+td.gsc_a_t .jq-badges { margin-left: 6px; }
