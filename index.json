@@ -1,0 +1,22 @@
+{
+ "schema": 1,
+ "generated": "2026-11-01T10:26:36+00:00",
+ "files": {
+  "sjr": {
+   "sha256": "67fd308762bfbd2eef5081c716b4560011c3636c8065870f8ad83a335638c5a9",
+   "bytes": 2631607,
+   "built": "2026-11-01"
+  },
+  "core": {
+   "sha256": "035c1aa222ccebb90a1365b33be0813aed2d3a2d07d6bb1c9b31df55b952fb7c",
+   "bytes": 84526,
+   "built": "2026-11-01"
+  },
+  "lists": {
+   "sha256": "fc82d0783761bcd3ac9d1a1b250bf24a0212cc1a01c6c3d637757518542809a9",
+   "bytes": 1787691,
+   "built": "2026-11-01"
+  }
+ },
+ "warnings": []
+}
